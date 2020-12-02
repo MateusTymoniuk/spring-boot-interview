@@ -101,7 +101,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Mateus Tymoniuk Almeida\",\n    \"sexo\": \"Masculino\",\n    \"dataNascimento\": \"1993-05-02\",\n    \"cidadeId\": 1\n}",
+							"raw": "{\n    \"nome\": \"Mateus\",\n    \"sexo\": \"Masculino\",\n    \"dataNascimento\": \"1993-05-02\",\n    \"cidade\": {\n        \"id\": 1,\n        \"nome\": \"Goiânia\",\n        \"estado\": \"Goiás\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -182,7 +182,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/nome\",\n        \"value\": \"Novo nome\"\n    }\n]"
+							"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/nome\",\n        \"value\": \"Novo nome\"\n    }\n]",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/clientes/1",

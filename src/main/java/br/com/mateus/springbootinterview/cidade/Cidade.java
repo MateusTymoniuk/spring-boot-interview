@@ -1,16 +1,9 @@
 package br.com.mateus.springbootinterview.cidade;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import br.com.mateus.springbootinterview.cliente.Cliente;
 
 @Entity
 public class Cidade {
@@ -23,19 +16,15 @@ public class Cidade {
 
 	private String estado;
 
-	@OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY)
-	private List<Cliente> clientes;
-
 	public Cidade() {
 		super();
 	}
 
-	public Cidade(long id, String nome, String estado, List<Cliente> clientes) {
+	public Cidade(long id, String nome, String estado) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.estado = estado;
-		this.clientes = clientes;
 	}
 
 	public long getId() {
@@ -60,14 +49,6 @@ public class Cidade {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}
-
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
-
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
 	}
 
 }

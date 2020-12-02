@@ -3,11 +3,9 @@ package br.com.mateus.springbootinterview.cliente;
 import java.util.List;
 import java.util.Optional;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.mateus.springbootinterview.cidade.Cidade;
 import br.com.mateus.springbootinterview.cidade.CidadeRepository;
 import br.com.mateus.springbootinterview.exception.NegocioException;
 
@@ -20,18 +18,17 @@ public class ClienteServiceImpl implements ClienteService {
 	@Autowired
 	private CidadeRepository cidadeRepository;
 	
-	@Autowired
-	private ModelMapper mapper;
-
 	@Override
-	public Cliente salvar(ClienteDTO dto) {
-		if(this.clienteRepository.existsByNome(dto.getNome())) {
+	public Cliente salvar(Cliente entity) {
+		if(this.clienteRepository.existsByNome(entity.getNome())) {
 			throw new NegocioException("Já existe um cliente com esse nome");
 		}
 		
-		Cidade cidade = cidadeRepository.getOne(dto.getCidadeId());
-		dto.setCidade(cidade);
-		return this.clienteRepository.save(mapRequestDTOParaEntity(dto));
+		if(!this.cidadeRepository.existsByEstadoAndNome(entity.getCidade().getEstado(), entity.getCidade().getNome())) {
+			throw new NegocioException("É preciso cadastrar a cidade antes");
+		}
+		
+		return this.clienteRepository.save(entity);
 	}
 
 	@Override
@@ -49,10 +46,6 @@ public class ClienteServiceImpl implements ClienteService {
 		this.clienteRepository.delete(entity);
 	}
 	
-	private Cliente mapRequestDTOParaEntity(ClienteDTO dto) {
-		return mapper.map(dto, Cliente.class);
-	}
-
 	@Override
 	public Cliente atualizar(Cliente entity) {
 		if (entity == null || entity.getId() == null) {

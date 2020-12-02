@@ -7,7 +7,6 @@ import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -33,9 +32,6 @@ public class ClienteDTO {
 
 	private Integer idade;
 
-	private Long cidadeId;
-
-	@JsonIgnore
 	private Cidade cidade;
 
 	@JsonProperty("idade")
@@ -58,7 +54,6 @@ public class ClienteDTO {
 		this.sexo = sexo;
 		this.dataNascimento = dataNascimento;
 		this.idade = idade;
-		this.cidadeId = cidadeId;
 		this.cidade = cidade;
 	}
 
@@ -96,14 +91,6 @@ public class ClienteDTO {
 
 	public void setIdade(Integer idade) {
 		this.idade = idade;
-	}
-
-	public Long getCidadeId() {
-		return cidadeId;
-	}
-
-	public void setCidadeId(Long cidade) {
-		this.cidadeId = cidade;
 	}
 
 	public Cidade getCidade() {
