@@ -43,7 +43,7 @@ public class ClienteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public ClienteDTO criar(@RequestBody @Valid ClienteDTO dto) {
-		Cliente novoCliente = service.salvar(dto);
+		Cliente novoCliente = service.salvar(mapRequestDTOParaEntity(dto));
 		return mapResponseEntityParaDTO(novoCliente);
 	}
 
@@ -80,6 +80,10 @@ public class ClienteController {
 	public void excluir(@PathVariable Long id) {
 		Cliente client = service.buscarPorId(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 		service.excluir(client);
+	}
+	
+	private Cliente mapRequestDTOParaEntity(ClienteDTO dto) {
+		return mapper.map(dto, Cliente.class);
 	}
 
 	private ClienteDTO mapResponseEntityParaDTO(Cliente entity) {

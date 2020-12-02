@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public interface ClienteService {
 	
-	Cliente salvar(ClienteDTO entity);
+	Cliente salvar(Cliente entity);
 
 	Optional<Cliente> buscarPorId(Long id);
 	
