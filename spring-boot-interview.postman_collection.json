@@ -149,7 +149,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/clientes?nome=Mateus Tymoniuk Almeida",
+							"raw": "http://localhost:8080/api/clientes?nome=Mateus",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -162,7 +162,7 @@
 							"query": [
 								{
 									"key": "nome",
-									"value": "Mateus Tymoniuk Almeida"
+									"value": "Mateus"
 								}
 							]
 						}
